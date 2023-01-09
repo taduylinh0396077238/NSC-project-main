@@ -1,0 +1,218 @@
+.select-item {
+    display: flex;
+    flex-direction: column;
+}
+
+    .select-item label {
+        color: white;
+        font-weight: bold;
+        font-size: 24px;
+    }
+
+    .select-item .select-item-container {
+        width: 100%;
+        position: relative;
+    }
+
+        .select-item .select-item-container span {
+            color: black;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+    .select-item select {
+        padding: 10px 20px;
+        border-radius: 5px;
+        outline: none;
+        border: 2px solid transparent;
+        width: 100%;
+    }
+
+        .select-item select:focus {
+            box-shadow: 0 0 10px #df507a;
+            border: 2px solid #df507a;
+        }
+
+.seat-ticket-item {
+    padding: 25px 0;
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    position: relative;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+}
+
+    .seat-ticket-item:hover {
+        border: 2px solid #df507a;
+        color: #df507a;
+    }
+
+    .seat-ticket-item.active {
+        background-color: #df507a;
+        color: white;
+    }
+
+    .seat-ticket-item.selected {
+        background-color: gray;
+        cursor: not-allowed;
+    }
+
+        .seat-ticket-item.selected:hover {
+            border: 2px solid white;
+            color: white;
+        }
+
+    .seat-ticket-item span {
+        font-size: 26px;
+    }
+
+    .seat-ticket-item input {
+        visibility: hidden;
+        position: absolute;
+    }
+
+.seat-deatail-pa {
+    padding: 0;
+}
+
+.seat-deatail > div {
+    height: 50px;
+    background-color: var(--bg-seat-tic);
+}
+
+.seat-deatail p {
+    color: white;
+    font-size: 20px;
+    text-align: center;
+}
+
+.seat-screen {
+    background-color: antiquewhite;
+    height: 20px;
+    text-align: center;
+}
+
+.card.card--details,
+.card {
+    background-color: #2b2b31;
+    border: none;
+}
+
+.line-space {
+    border-bottom: #df507a 2px solid;
+    /* border-top: #df507a 2px solid; */
+}
+
+.ticket-chose-item {
+    padding: 30px 0;
+}
+
+.tilte-chose-ticket h3 {
+    font-weight: bold;
+    color: white;
+}
+
+.city-item > label {
+    width: fit-content;
+    line-height: 50px;
+    padding: 0 20px;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+    user-select: none;
+}
+
+    .city-item > label input {
+        display: none;
+    }
+
+    .city-item > label.active {
+        background-color: #df507a;
+    }
+
+.room-ticket-item {
+    border-bottom: #df507a 0.5px solid;
+}
+
+    .room-ticket-item h5 {
+        color: white;
+        font-weight: 400;
+    }
+
+.time-room-list label {
+    width: fit-content;
+    border-radius: 2px;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+    margin-left: 20px;
+    border: 1px solid white;
+    padding: 5px 0
+}
+
+    .time-room-list label input {
+        display: none;
+    }
+
+    .time-room-list label.active {
+        background-color: #df507a;
+    }
+span a {
+    padding: 8px 10px;
+
+}
+
+    span a:hover {
+        color: white;
+    }
+    .time-room-list label:hover {
+        border-color: #df507a;
+    } 
+
+
+    .title-ticket-date-item {
+        color: white;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+    }
+
+    .title-ticket-date-item > div {
+        font-size: 14px;
+    }
+
+    .title-ticket-date-item h4 {
+        margin-left: 10px;
+        font-size: 36px;
+    }
+
+.ticket-date label input {
+    display: none;
+}
+
+.ticket-date label {
+    border-radius: 10px;
+    padding: 10px 0;
+    border: 2px solid white;
+    user-select: none;
+    margin-top: 10px;
+}
+
+    .ticket-date label.active {
+        border: 2px solid #df507a;
+    }
+
+        .ticket-date label.active div {
+            color: #df507a;
+        }
+
+a {
+    color: white;
+}

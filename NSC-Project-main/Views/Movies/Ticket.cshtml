@@ -1,0 +1,269 @@
+﻿@model NSC_project.Models.NSCViewModels.TicketData
+@{
+    ViewData["Title"] = "Ticket";
+}
+
+
+<section class="section mt-5">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model.Movies)
+            {
+                if (item.Id == (int?)ViewData["MovieID"])
+                {
+                    <!-- title -->
+                    <div class="col-12">
+                        <h1 class="details__title">@item.Title</h1>
+                    </div>
+                    <!-- end title -->
+                    <!-- content -->
+                    <div class="col-12 col-md-12">
+                        <div class="card card--details"
+                     style="border: none; align-items: center;background-color: #2b2b31 !important;">
+                            <!-- card cover -->
+                            <div class="card__cover" style="background-color: #2b2b31 !important;">
+                                <img src="~/img/@item.Image" alt="@item.Title">
+                            </div>
+                            <!-- end card cover -->
+                            <!-- card content -->
+                            <div class="card__content "
+                         style="background-color: #2b2b31 !important; margin-left: 0; padding-left: 20px; width: 100%;">
+                                <div class="card__wrap">
+                                    <span class="card__rate"> 8.4</span>
+
+                                    <ul class="card__list">
+                                        <li>HD</li>
+                                        <li>16+</li>
+                                    </ul>
+                                </div>
+
+                                <ul class="card__meta">
+                                    <li>
+                                        <span>Director:</span>
+                                        <a href="#">@item.Director</a>
+                                    </li>
+                                    <li><span>Actor:</span> @item.Actor</li>
+                                    <li><span>Opening Date:</span> @item.Opening_date</li>
+                                    <li><span>Duration Min:</span> @item.Duration_min</li>
+                                    <li><span>Genre:</span> @item.Genre</li>
+                                    <li><span>Description:</span> @item.Description</li>
+                                </ul>
+                            </div>
+                            <!-- end card content -->
+                        </div>
+                    </div>
+                    <!-- end content -->
+                }
+            }
+        </div>
+        <form asp-action="Create" class="row mt-5">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="line-space ticket-chose-item mt-4">
+                <div class="tilte-chose-ticket">
+                    <h3>Date</h3>
+                </div>
+                <div class="container mt-3">
+                    <div class="row ticket-date">
+                        @if (Model.Screenings != null)
+                        {
+                            @foreach (var item in Model.Screenings)
+                            {
+                                <label class="col-1" for="@item.Time">
+                                    <div class="title-ticket-date-item">
+                                        <span>@item.Time.ToString("dd MMM yyyy")</span>
+                                        <span>@item.Time.ToString("hh:mm tt")</span>
+                                    </div>
+                                    <input class="form-check-input" type="checkbox" name="Time" id="@item.Time" value="option1">
+                                </label>
+                            }
+                        }
+
+                        @*<label class="col-1" for="d1">
+                        <div class="title-ticket-date-item">
+                        <div>
+                        <span>01</span>
+                        <p>Wed</p>
+                        </div>
+                        <h4>04</h4>
+                        </div>
+                        <input class="form-check-input" type="radio" name="date" id="d1" value="option1">
+                        </label>
+                        <label class="col-1" for="d2">
+                        <div class="title-ticket-date-item">
+                        <div>
+                        <span>01</span>
+                        <p>Wed</p>
+                        </div>
+                        <h4>04</h4>
+                        </div>
+                        <input class="form-check-input" type="radio" name="date" id="d2" value="option1">
+                        </label>*@
+                    </div>
+                </div>
+            </div>
+            <div class="line-space ticket-chose-item mt-4">
+                <div class="tilte-chose-ticket">
+                    <h3>City</h3>
+                </div>
+                <div class="container mt-3">
+                    <div class="row city-item">
+                        @if (Model.Theaters != null)
+                        {
+
+                            @foreach (var item in Model.Theaters)
+                            {
+                                <label>
+                                    <span>@Html.ActionLink(item.Location, "Ticket", new { theaterId = item.Id })</span>
+                                    <input class="form-check-input" type="checkbox"
+                                            name="selectedTheater"
+                                   @(Html.Raw(ViewBag.theaterId == item.Id ? "checked=\"checked\"" : "")) />
+                                </label>
+                            }
+                        }
+                        @*<label for="fr">
+                        <span>Hồ Chí Minh</span>
+                        <input class="form-check-input" name="city" type="radio" id="fr" value="option1" checked>
+                        </label>
+                        <label for="fr1">
+                        <span>Đà Nẵng</span>
+                        <input class="form-check-input" name="city" type="radio" id="fr1" value="option1">
+                        </label>*@
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="line-space ticket-chose-item mt-4">
+                <div class="tilte-chose-ticket">
+                    <h3>Room</h3>
+                </div>
+                <div class="container mt-3">
+                    <div class="mx-2">
+                        <div class="mt-3">
+                            <div class="row time-room-list py-3">
+                                @if (Model.Auditoriums != null)
+                                {
+                                    @foreach (var item in Model.Auditoriums)
+                                    {
+                                        <label >
+                                            <span>@Html.ActionLink(item.Name, "Ticket", new { auditoriumId = item.Id , theaterId = item.TheaterId})</span>
+                                            <input class="form-check-input" type="checkbox"
+                                               name="selectedAuditorium"
+                                           @(Html.Raw(ViewBag.auditoriumId == item.Id ? "checked=\"checked\"" : "")) />
+                                        </label>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @* <div class="col-4 col-md-4 select-item">
+            <label for="city">City</label>
+            <div class="select-item-container">
+            <select name="city" id="city">
+            <option value="" selected>-- City --</option>
+            @if (Model.Theaters != null)
+            {
+            @foreach (var item in Model.Theaters)
+            {
+            <option value=@item.Id id=@item.Id>@item.Location</option>
+            }
+            }
+            </select>
+            <span><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            </div>
+            <div class="col-4 col-md-4 select-item">
+            <label for="room">Room</label>
+            <div class="select-item-container">
+            <select name="room" id="room">
+            <option selected>-- Chose room --</option>
+
+            @if (Model.Auditoriums != null)
+            {
+            @foreach (var item in Model.Auditoriums)
+            {
+            <option value=@item.Id>@Html.ActionLink(item.Name, "Ticket", new { auditoriumId = item.Id }) </option>
+            }
+            }
+            </select>
+            <span><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            </div>
+            <div class="col-4 col-md-4 select-item">
+            <label asp-for="@Model.Screenings">Time slot</label>
+            <div class="select-item-container">
+            <select id="timeSlot">
+            <option selected>-- Chose time slot --</option>
+            @if (Model.Screenings != null)
+            {
+            @foreach (var item in Model.Screenings)
+            {
+            <option asp-for="@Model.Screenings" value="@item.Id">@item.Time</option>
+            }
+            }
+            </select>
+            <span><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            </div>*@
+            <!-- Select Seats -->
+            @{
+                List<NSC_project.Models.NSCViewModels.SeatData> seats = ViewBag.Seats;
+                if (seats != null)
+                {
+                    <div class="container seat-ticket mt-5">
+                        <div class="seat-screen col-12 my-5">SCREEN</div>
+                        <div class="row mt-3">
+                            @foreach (var seat in seats)
+                            {
+
+                                if (!seat.Assigned)
+                                {
+                                    <label class="form-check-label col-1 seat-ticket-item">
+                                        <span>@seat.Number</span>
+                                        <input type="checkbox"
+                                           name="selectedCourses"
+                                           value="@seat.SeatID"
+                                           @(Html.Raw(seat.Assigned ? "checked=\"checked\"" : "")) />
+                                    </label>
+                                }
+                                else
+                                {
+                                    <div class="col-1 seat-ticket-item selected">
+                                        <span>@seat.Number</span>
+                                    </div>
+                                }
+                            }
+
+                        </div>
+                        <div class="row seat-deatail-pa mt-5">
+                            <div class="seat-deatail col-4" style="--bg-seat-tic: gray;">
+                                <div></div>
+                                <p>Selected</p>
+                            </div>
+                            <div class="seat-deatail col-4" style="--bg-seat-tic: #df507a;">
+                                <div></div>
+                                <p>Select</p>
+                            </div>
+                            <div class="seat-deatail col-4" style="--bg-seat-tic: transparent;;">
+                                <div style="border: 1px solid white"></div>
+                                <p>Empty</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+
+        </form>
+
+    </div>
+</section>
+<!-- end content -->
+//<label class="form-check-label col-1 seat-ticket-item">
+    //                <span>Number</span>
+    //                <input class="form-check-input" type="checkbox">
+    //
+</label>

@@ -1,0 +1,54 @@
+﻿@model NSC_project.Models.User
+@{
+    ViewData["Title"] = "Regiter";
+
+}
+
+
+<div class="sign section--bg" data-bg="./img/section.jpg"
+     style="background: url(./img/section.jpg) center center / cover no-repeat;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="sign__content">
+                    <!-- registration form -->
+                        <form asp-action="Login" class="sign__form">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <a href="http://flixgo.volkovdesign.com/main/index.html" class="sign__logo">
+                            <img src="./img/logo.svg" alt="">
+                        </a>
+
+                        <div class="sign__group">
+                            <input type="text" class="sign__input" placeholder="Name">
+                        </div>
+
+                        <div class="sign__group">
+                            <input type="text" class="sign__input" placeholder="Email">
+                        </div>
+
+                        <div class="sign__group">
+                            <input type="password" class="sign__input" placeholder="Password">
+                        </div>
+
+                        <div class="sign__group sign__group--checkbox">
+                            <input id="remember" name="remember" type="checkbox" checked="checked">
+                            <label for="remember">
+                                I agree to the <a href="http://flixgo.volkovdesign.com/main/privacy.html">
+                                    Privacy
+                                    Policy
+                                </a>
+                            </label>
+                        </div>
+
+                        <button class="sign__btn" type="button">Sign up</button>
+
+                        <span class="sign__text">
+                            Already have an account? <a href="http://flixgo.volkovdesign.com/main/signin.html">Sign in!</a>
+                        </span>
+                    </form>
+                    <!-- registration form -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
