@@ -16,9 +16,9 @@ namespace NSC_project.Models
         [Required, EmailAddress]
         public string Email { get; set; }
 
-        [Required, DataType(DataType.PhoneNumber)]
+        [DataType(DataType.PhoneNumber)]
         [RegularExpression(@"^\\(?(\[0-9\]{3})\\)?\[-.●\]?(\[0-9\]{3})\[-.●\]?(\[0-9\]{4})$", ErrorMessage = "The PhoneNumber field is not a valid phone number")]
-        public string PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
 
         public ICollection<Reservetion>? Reservetions { get; set; }
        

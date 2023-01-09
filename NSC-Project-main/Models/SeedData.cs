@@ -24,9 +24,9 @@ namespace NSC_project.Models
                 //User
                 var users = new User[]
                 {
-                    new User { Username = "admin", Password = "123456", Name ="ADMIN", Email = "admin123@gmail.com",PhoneNumber = "0999999999"},
-                    new User { Username = "james", Password = "123456", Name ="Alex James", Email = "alex123@gmail.com",PhoneNumber = "0999999333"},
-                    new User { Username = "michel", Password = "123456", Name ="Vander Michel", Email = "vander@gmail.com",PhoneNumber = "0999999666"}
+                    new User { Username = "admin", Password = BCrypt.Net.BCrypt.HashPassword("123456"), Name ="ADMIN", Email = "admin123@gmail.com",PhoneNumber = "0999999999"},
+                    new User { Username = "james", Password = BCrypt.Net.BCrypt.HashPassword("123456"), Name ="Alex James", Email = "alex123@gmail.com",PhoneNumber = "0999999333"},
+                    new User { Username = "michel", Password = BCrypt.Net.BCrypt.HashPassword("123456"), Name ="Vander Michel", Email = "vander@gmail.com",PhoneNumber = "0999999666"}
                 };
 
                 foreach (User s in users)

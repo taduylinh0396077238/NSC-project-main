@@ -2,13 +2,13 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using NSC_project.Models;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 using Microsoft.AspNetCore.Session;
 using NSC_project.Extentions;
 using NSC_project.Data;
+using NSC_project.Models;
 
 namespace NSC_project.Controllers
 {
@@ -35,7 +35,7 @@ namespace NSC_project.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register([Bind("Id,Username,Password,Name,Email,PhoneNumber")] User user)
         {
-            if (ModelState.IsValid)
+            if (true)
             {
                /* if (checkUsername(user.Username) > 0)
                 {
@@ -50,9 +50,9 @@ namespace NSC_project.Controllers
                     var u = new User();
                     u.Username = user.Username;
                     u.Password = BCrypt.Net.BCrypt.HashPassword(user.Password); ;
-                    u.Name = user.Name;
+                    u.Name = "abc";
                     u.Email = user.Email;
-                    u.PhoneNumber = user.PhoneNumber;
+                    u.PhoneNumber = "0969264559";
 
                     _context.Add(u);
                     await _context.SaveChangesAsync();
@@ -60,14 +60,16 @@ namespace NSC_project.Controllers
                     {
                         ViewBag.Success = "Signup successfully!";
                         user = new User();
+                        return RedirectToAction("Login");
+
                     }
                     else
                     {
                         ModelState.AddModelError("", "Signup Failed!");
                     }
                 }
+                return View(user);
             }
-            return View(user);
         }
 
     /*    private int checkUsername(string username)
@@ -110,20 +112,23 @@ namespace NSC_project.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(string email, string password)
+        public async Task<IActionResult> Login(string email, string password)
         {
             if (ModelState.IsValid)
             {
-                var data = _context.User.Where(s => s.Email.Equals(email)).ToList();
-               
-                bool checkPass = BCrypt.Net.BCrypt.Verify(password, data.FirstOrDefault().Password);
+                var data = await _context.User.Where(s => s.Email.Equals(email)).FirstOrDefaultAsync();
+                if (data==null)
+                {
+                    return View();
+                }
+                bool checkPass = BCrypt.Net.BCrypt.Verify(password, data.Password);
 
                 if (checkPass == true)
                 {
                     //add session
                     var User = new UserSession();
-                    User.UserName = data.FirstOrDefault().Name.ToString();
-                    User.UserId = data.FirstOrDefault().Id;
+                    User.UserName = data.Name.ToString();
+                    User.UserId = data.Id;
 
                     HttpContext.Session.SetObjectAsJson("UserDetails", User);
                     return RedirectToAction("Index", "Home");

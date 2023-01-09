@@ -12,22 +12,22 @@
             <div class="col-12">
                 <div class="sign__content">
                     <!-- registration form -->
-                        <form asp-action="Login" class="sign__form">
+                    <form asp-action="Register" class="sign__form" method="post">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <a href="http://flixgo.volkovdesign.com/main/index.html" class="sign__logo">
                             <img src="./img/logo.svg" alt="">
                         </a>
 
                         <div class="sign__group">
-                            <input type="text" class="sign__input" placeholder="Name">
+                            <input asp-for="Username" type="text" class="sign__input" placeholder="Name">
                         </div>
 
                         <div class="sign__group">
-                            <input type="text" class="sign__input" placeholder="Email">
+                            <input asp-for="Email" type="text" class="sign__input" placeholder="Email">
                         </div>
 
                         <div class="sign__group">
-                            <input type="password" class="sign__input" placeholder="Password">
+                            <input asp-for="Password" type="password" class="sign__input" placeholder="Password">
                         </div>
 
                         <div class="sign__group sign__group--checkbox">
@@ -40,7 +40,7 @@
                             </label>
                         </div>
 
-                        <button class="sign__btn" type="button">Sign up</button>
+                        <button class="sign__btn" type="submit">Sign up</button>
 
                         <span class="sign__text">
                             Already have an account? <a href="http://flixgo.volkovdesign.com/main/signin.html">Sign in!</a>
